@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+        PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en" ng-app="addFood" >
+<head>
+    <script type="application/javascript" src="Controller/angular.min.js"></script>
+    <script type="application/javascript" src="Controller/AddFoodToBasketController.js"></script>
+    <title>Restaurant Reservation System</title>
+    <style type="text/css">
+        .head_log
+        {
+            height: 100px;
+            width: auto;
+            background-color: crimson;
+        }
+        .head_font
+        {
+            font-size: xx-large;
+            color: gainsboro;
+            float: right;
+            position: absolute;
+            right: 600px;
+            top: 20px;
+        }
+        .log_pic
+        {
+            width: 300px;
+            height: 100px;
+            position: absolute;
+            left: 200px;
+        }
+        .body
+        {
+            padding: 0px;
+            margin: 0px;
+        }
+        .body_res {
+            width: 500px;
+        }
+        .cow1
+        {
+            width: 500px;
+        }
+        .list
+        {
+            list-style-type: none;
+            width: 500px;
+        }
+        .res_font {
+            color: crimson;
+            font-style: italic;
+        }
+        .food1
+        {
+            position: absolute;
+            float:left;
+        }
+        .food_list1
+        {
+            border: solid;
+            border-color: burlywood;
+        }
+        .order
+        {
+            list-style-type: none;
+        }
+    </style>
+</head>
+<body class="body" ng-controller="addFoodToBasket" >
+     <div class ="head_log">
+         <img src="image/log.jpg" alt="log" class="log_pic" />
+         <h1 class="head_font" align="center">For Your Order!</h1>
+     </div>
+     <table class="body_res" align="center">
+         <tr>
+             <td class="cow1">
+                 <h5 style="font-style: italic">和合谷（东直门店）</h5>
+                 <img alt="res" src="image/hehegu.jpg" width="1000"/>
+             </td>
+         </tr>
+     </table>
+    <div class="show_food_list" ng-switch on="isCaculate">
+        <div align="center" class="all_foods" ng-switch-when="true">
+            <div align="center"><h2 class="res_font">菜单</h2></div>
+            <ul class="list" ng-repeat="food in foods">
+                <li class="food_list1">
+                    <div align="left" class="food1">
+                        <img alt="宫保鸡丁" ng-src="{{food.src}}" />
+                    </div>
+                    <div>
+                        <h3>{{food.name}}</h3>
+                        <h3>{{food.price}}</h3>
+                        <input type="button" value="预订" ng-click="addFood(food)"/>
+                    </div>
+                </li>
+            </ul>
+            <input type="button" value="提交订单" ng-click = "setCaculate(false)">
+        </div>
+        <div ng-switch-when="false" align="center">
+            <h2 align="center" class="res_font">订单</h2>
+            <ul ng-repeat="food in foodlist" class="order">
+                <li>
+                        <h3>{{food.name}}&nbsp{{food.price}}</h3>
+                </li>
+            </ul>
+        </div>
+    </div>
+</body>
+</html>
+
